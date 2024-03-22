@@ -20,11 +20,21 @@ public class UserServiceTest
     }
     
     [Fact]
+    public void AddUser_Should_Return_False_When_Last_Name_Is_Missing()
+    {
+        var userService = new UserService();
+
+        var addResult = userService.AddUser("Jan", "", "kowalski@wp.pl", DateTime.Parse("1980-12-03"), 1);
+        
+        Assert.False(addResult);
+    }
+    
+    [Fact]
     public void AddUser_Should_Return_False_When_Email_Is_Incorrect()
     {
         var userService = new UserService();
 
-        var addResult = userService.AddUser("Jan", "Kowalski", "kowalskiwppl", DateTime.Parse("1980-12-03"), 1);
+        var addResult = userService.AddUser("Jan", "Kowalski", "kowalski.wppl", DateTime.Parse("1980-12-03"), 1);
         
         Assert.False(addResult);
     }
